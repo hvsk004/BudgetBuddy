@@ -1,0 +1,26 @@
+{
+  "name": "budgetbuddy",
+  "version": "1.0.0",
+  "description": "A personal finance management system integrated with an LLM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hvsk004/BudgetBuddy.git"
+  },
+  "keywords": [
+    "Budget",
+    "Buddy",
+    "Personal",
+    "Finance",
+    "Management"
+  ],
+  "author": "hvsk004",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/hvsk004/BudgetBuddy/issues"
+  },
+  "homepage": "https://github.com/hvsk004/BudgetBuddy#readme"
+}
