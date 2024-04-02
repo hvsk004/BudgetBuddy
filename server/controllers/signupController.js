@@ -1,6 +1,5 @@
 // controllers/signupController.js
-
-const User = require("../models/user");
+import User from "../models/user";
 
 exports.signup = async (req, res) => {
   try {

@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
-const { v4: uuidv4 } = require("uuid");
+import mongoose from "mongoose";
+
+import { uuidv4 } from "uuid";
 
 // Define the user schema
 const userSchema = new mongoose.Schema({

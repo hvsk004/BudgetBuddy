@@ -1,6 +1,5 @@
 // db.js
-
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 async function connectDB() {
   try {

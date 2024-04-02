@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 // Define the expense schema
 const expenseSchema = new mongoose.Schema({

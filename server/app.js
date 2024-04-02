@@ -1,9 +1,13 @@
 // app.js
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const connectDB = require("./config/db"); // Import the connectDB function
+import express from "express";
+
+import bodyParser from "body-parser";
+
+import cors from "cors";
+
+import connectDB from "./config/db";
+
 // Initialize Express app
 const app = express();
 
@@ -15,8 +19,10 @@ app.use(cors()); // Allow cross-origin requests (for development)
 connectDB(); // Call the connectDB function to establish the database connection
 
 // Routes
-const signupRoute = require("./routes/signup");
-const loginRoute = require("./routes/login");
+import signupRoute from "./routes/signup";
+
+import loginRoute from "./routes/login";
+
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 
