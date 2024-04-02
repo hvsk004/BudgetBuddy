@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
 
 // Define the user schema
 const userSchema = new mongoose.Schema({
@@ -6,6 +7,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    default: uuidv4, // Use uuidv4 to generate a unique ID
   },
   name: {
     type: String,
@@ -13,7 +15,7 @@ const userSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: Date,
-    required: true,
+    required: false,
   },
   email: {
     type: String,
