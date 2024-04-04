@@ -1,7 +1,7 @@
 // controllers/signupController.js
-import User from "../models/user";
+import { User } from "../models/user.js";
 
-exports.signup = async (req, res) => {
+export const signup = async (req, res) => {
   try {
     const { name, email, password, dateOfBirth } = req.body;
     const existingUser = await User.findOne({ email });

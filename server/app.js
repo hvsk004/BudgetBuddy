@@ -4,9 +4,11 @@ import express from "express";
 
 import bodyParser from "body-parser";
 
+import cookieParser from "cookie-parser";
+
 import cors from "cors";
 
-import connectDB from "./config/db";
+import { connectDB } from "./config/db.js";
 
 // Initialize Express app
 const app = express();
@@ -15,16 +17,21 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors()); // Allow cross-origin requests (for development)
 
+app.use(cookieParser());
+
 // Connect to MongoDB
 connectDB(); // Call the connectDB function to establish the database connection
 
 // Routes
-import signupRoute from "./routes/signup";
+import signupRoute from "./routes/signup.js";
+import loginRoute from "./routes/login.js";
+import logoutRoute from "./routes/logout.js";
+import dashboardRoute from "./routes/dashboard.js";
 
-import loginRoute from "./routes/login";
-
+app.use("/logout", logoutRoute);
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
+app.use("/dashboard", dashboardRoute);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -36,4 +43,4 @@ app.use((err, req, res, next) => {
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-module.exports = app;
+export default app;

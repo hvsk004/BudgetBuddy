@@ -26,4 +26,4 @@ const expenseSchema = new mongoose.Schema({
 });
 
 // Export the Expense model based on the schema
-module.exports = mongoose.model("Expense", expenseSchema);
+export default mongoose.model("Expense", expenseSchema);

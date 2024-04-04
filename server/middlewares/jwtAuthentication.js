@@ -6,13 +6,13 @@ dotenv.config(); // Load environment variables from .env file
 const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
 //Function that creates the jwt
-function signToken(payload) {
+export function signToken(payload) {
   const token = jwt.sign(payload, jwtSecretKey, { expiresIn: "1w" });
   return token;
 }
 
 //Function to verify jwt
-function verifyToken(token) {
+export function verifyToken(token) {
   try {
     const response = jwt.verify(token, jwtSecretKey);
     return response;
@@ -21,4 +21,19 @@ function verifyToken(token) {
   }
 }
 
-module.exports = { signToken, verifyToken };
+export function authenticate(req, res, next) {
+  const token = req.cookies.jwt;
+  if (token) {
+    try {
+      const user = verifyToken(token);
+      if (user) {
+        return res.redirect("/dashboard");
+      }
+    } catch (err) {
+      // Handle the error (e.g., send a response, log the error, etc.)
+      console.error(err);
+      return res.status(401).json({ error: "Invalid token" });
+    }
+  }
+  next();
+}

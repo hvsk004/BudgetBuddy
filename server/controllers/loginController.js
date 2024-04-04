@@ -1,29 +1,36 @@
-import User from "../models/user";
+import { User } from "../models/user.js";
 
-/**
- * Controller function to handle user login.
- * @param {object} req - Express request object.
- * @param {object} res - Express response object.
- */
-exports.login = async (req, res) => {
+import { signToken } from "../middlewares/jwtAuthentication.js";
+
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
     // Find user by email in the database
     const user = await User.findOne({ email });
-
-    // If user not found, return error response
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
 
-    // Check if password matches
     if (password !== user.password) {
       return res.status(400).json({ message: "Invalid Password" });
     }
 
-    // If login successful, return success message and user data
-    res.status(200).json({ message: "Login Successful", user });
+    const jwtPayload = {
+      uuid: user.uuid,
+      name: user.name,
+    };
+
+    const token = signToken(jwtPayload);
+
+    res.cookie("jwt", token, {
+      httpOnly: true, // Cookie cannot be accessed via client-side scripts
+      secure: true, // Cookie will only be sent over HTTPS
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Expires in 1 week
+      sameSite: "strict", // Cookie will only be sent on requests to the same site
+    });
+
+    res.status(200).json({ message: "Login Successful" });
   } catch (error) {
     // Handle any errors that occur during login process
     console.error("Encountered Error:", error);

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import { uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 // Define the user schema
 const userSchema = new mongoose.Schema({
@@ -32,4 +32,4 @@ const userSchema = new mongoose.Schema({
 });
 
 // Create and export the User model based on the schema
-module.exports = mongoose.model("User", userSchema);
+export const User = mongoose.model("User", userSchema);

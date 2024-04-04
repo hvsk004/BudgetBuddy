@@ -4,8 +4,10 @@ import express from "express";
 
 const router = express.Router();
 
-import { login } from "../controllers/loginController";
+import { authenticate } from "../middlewares/jwtAuthentication.js";
 
-router.post("/", login);
+import { login } from "../controllers/loginController.js";
 
-module.exports = router;
+router.post("/", authenticate, login);
+
+export default router;
