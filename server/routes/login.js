@@ -8,6 +8,8 @@ import { authenticate } from "../middlewares/jwtAuthentication.js";
 
 import { login } from "../controllers/loginController.js";
 
-router.post("/", authenticate, login);
+import { loginValidation } from "../middlewares/zodvaliation.js";
+
+router.post("/", loginValidation, authenticate, login);
 
 export default router;

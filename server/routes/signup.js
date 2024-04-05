@@ -4,6 +4,8 @@ const router = express.Router();
 
 import { signup } from "../controllers/signupController.js";
 
-router.post("/", signup);
+import { signupValidation } from "../middlewares/zodvaliation.js";
+
+router.post("/", signupValidation, signup);
 
 export default router;
