@@ -12,6 +12,8 @@ const loginSchema = zod.object({
   password: zod.string(),
 });
 
+const expenseSchema = zod.string().min(6);
+
 const signupValidation = (req, res, next) => {
   const input = req.body;
   const result = signupSchema.safeParse(input);
@@ -27,7 +29,7 @@ const signupValidation = (req, res, next) => {
 
 const loginValidation = (req, res, next) => {
   const input = req.body;
-  const result = signupSchema.safeParse(input);
+  const result = loginSchema.safeParse(input);
   if (result.success) {
     next();
   } else {
@@ -38,4 +40,17 @@ const loginValidation = (req, res, next) => {
   }
 };
 
-export { signupValidation, loginValidation };
+const expenseValidation = (req, res, next) => {
+  const expense = req.body.expense;
+  const result = expenseSchema.safeParse(expense);
+  if (result.success) {
+    next();
+  } else {
+    res.status(400).json({
+      error: result.error.errors,
+      message: "Validation error: Invalid Inputs",
+    });
+  }
+};
+
+export { signupValidation, loginValidation, expenseValidation };

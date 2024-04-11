@@ -27,11 +27,14 @@ import signupRoute from "./routes/signup.js";
 import loginRoute from "./routes/login.js";
 import logoutRoute from "./routes/logout.js";
 import dashboardRoute from "./routes/dashboard.js";
+import expenseRoute from "./routes/expenses.js";
 
 app.use("/logout", logoutRoute);
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/dashboard", dashboardRoute);
+
+app.use("/expense", expenseRoute);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

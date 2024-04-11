@@ -2,6 +2,21 @@ import express from "express";
 
 const router = express.Router();
 
-import { getExpensesController } from "../controllers/expensesontroller.js";
+import {
+  getExpensesController,
+  createExpenseController,
+} from "../controllers/expensesontroller.js";
 
-router.get("/", getExpensesController);
+import { createExpense } from "../middlewares/createExpense.js";
+import { protectRoute } from "../middlewares/jwtAuthentication.js";
+
+router.get("/getExpenses", getExpensesController);
+
+router.post(
+  "/createExpense",
+  protectRoute,
+  createExpense,
+  createExpenseController
+);
+
+export default router;

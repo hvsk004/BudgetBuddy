@@ -37,3 +37,28 @@ export function authenticate(req, res, next) {
   }
   next();
 }
+
+export function protectRoute(req, res, next) {
+  console.log("Protecting the route: authenticating token");
+  const token = req.cookies.jwt;
+  if (token) {
+    try {
+      const user = verifyToken(token);
+      console.log("User: " + JSON.stringify(user));
+      if (user) {
+        req.body.userId = user.userId;
+        console.log("User ID:", user.userId);
+        return next();
+      }
+    } catch (err) {
+      // Handle the error (e.g., send a response, log the error, etc.)
+      console.error(err);
+      return res
+        .status(401)
+        .json({ error: "Invalid token", message: "Please Login" });
+    }
+  }
+  return res
+    .status(401)
+    .json({ error: "Token not found", message: "Please Login" });
+}
