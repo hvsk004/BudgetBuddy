@@ -10,7 +10,7 @@ import {
 import { createExpense } from "../middlewares/createExpense.js";
 import { protectRoute } from "../middlewares/jwtAuthentication.js";
 
-router.get("/getExpenses", getExpensesController);
+router.get("/getExpenses", protectRoute, getExpensesController);
 
 router.post(
   "/createExpense",

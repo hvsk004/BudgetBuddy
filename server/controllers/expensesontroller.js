@@ -1,8 +1,10 @@
 import expense from "../models/expensesModel.js";
 
-export const getExpensesController = async (_req, res) => {
+export const getExpensesController = async (req, res) => {
   try {
-    const expenses = await expense.find();
+    const userId = req.body.userId;
+    console.log("userID:(getting expenses) " + userId);
+    const expenses = await expense.find({ userId: userId });
     res.status(200).json({ expenses: expenses });
   } catch (error) {
     console.error("Error in get expenses controller:", error);
