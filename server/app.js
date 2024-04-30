@@ -1,13 +1,7 @@
-// app.js
-
 import express from "express";
-
 import bodyParser from "body-parser";
-
 import cookieParser from "cookie-parser";
-
-import cors from "cors";
-
+import cors from "cors"; // Import the cors middleware
 import { connectDB } from "./config/db.js";
 
 // Initialize Express app
@@ -15,12 +9,18 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors()); // Allow cross-origin requests (for development)
-
 app.use(cookieParser());
 
+// Configure CORS
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Allow requests from this origin
+    credentials: true, // Allow sending cookies with requests
+  })
+);
+
 // Connect to MongoDB
-connectDB(); // Call the connectDB function to establish the database connection
+connectDB();
 
 // Routes
 import signupRoute from "./routes/signup.js";
@@ -33,7 +33,6 @@ app.use("/logout", logoutRoute);
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/dashboard", dashboardRoute);
-
 app.use("/expense", expenseRoute);
 
 // Error handling middleware

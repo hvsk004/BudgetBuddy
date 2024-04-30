@@ -1,34 +1,22 @@
-import Sidebar from "./components/Sidebar";
-import piechart from "./assets/pie-chart.png";
-import { SidebarItem } from "./components/Sidebar";
-import dashboardIcon from "./assets/budget.png";
-import logo from "./assets/logo.svg";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+// import "./App.css";
+import Signup from "./components/Signup";
+import { LoginForm } from "./components/Login";
+import { Dashboard } from "./components/Dashboard";
+import Homepage from "./components/Homepage";
+import Analytics from "./components/Analytics";
 
 function App() {
-  const sidebarItems = [
-    {
-      id: 1,
-      icon: dashboardIcon,
-      text: "Dashboard",
-      active: true,
-      alert: false,
-    },
-    {
-      id: 2,
-      icon: piechart,
-      text: "Statistics",
-      active: false,
-      alert: true,
-    },
-  ];
-
   return (
-    <>
-      <Sidebar>
-        <SidebarItem icon={dashboardIcon} text="Dashboard" active alert />
-        <SidebarItem icon={piechart} text="Statistics" active alert />
-      </Sidebar>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/home" element={<Homepage />} />
+        <Route path="/analytics" element={<Analytics />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

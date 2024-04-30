@@ -8,7 +8,7 @@ export const createExpense = async (req, res, next) => {
       {
         prompt: expenseStatement,
         system_prompt:
-          'From the given sentence, extract the amount spent and the category it was spent on, and return output in JSON. The output should be in the following format: {"amount": [amount], "category": [category], "description": [a simple sentence describing the transaction]}. If the given information is not sufficent to extract the amount and category, return an error message. in json as {"error": "Insufficient information to extract amount and category"}.',
+          'From the given sentence, extract the amount spent and the category it was spent on,the name of the category must always be uppercase and use generic names like food for both food and drinks and also for things like soap shampoo brush etc use category Personal Care, and return output in JSON format but in plain text only return the output nothing else do not use triple quotes specify json type. The output should be in the following format: {"amount": amount, "category": category, "description": a simple sentence describing the transaction}. If the given information is not sufficent to extract the amount and category, return an error message. in json as {"error": "Insufficient information to extract amount and category"}.',
         stream: false,
       },
       {

@@ -1,5 +1,6 @@
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
 import { useContext, createContext, useState } from "react";
+import logo from "../assets/logo-final.png";
 
 const SidebarContext = createContext();
 
@@ -11,9 +12,9 @@ export default function Sidebar({ children }) {
       <nav className="h-full flex flex-col bg-white border-r shadow-md">
         <div className="p-4 pb-2 flex justify-between items-center">
           <img
-            src="https://img.logoipsum.com/243.svg"
+            src={logo}
             className={`overflow-hidden transition-all ${
-              expanded ? "w-32" : "w-0"
+              expanded ? "w-48" : "w-0"
             }`}
             alt=""
           />
@@ -28,8 +29,7 @@ export default function Sidebar({ children }) {
         <SidebarContext.Provider value={{ expanded }}>
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
-
-        <div className="border-t flex p-3">
+        {/* <div className="border-t flex p-3">
           <img
             src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
             alt=""
@@ -47,14 +47,20 @@ export default function Sidebar({ children }) {
             </div>
             <MoreVertical size={20} />
           </div>
-        </div>
+        </div> */}
       </nav>
     </aside>
   );
 }
 
-export function SidebarItem({ icon, text, active, alert }) {
+export function SidebarItem({ icon, text, active, onClick }) {
   const { expanded } = useContext(SidebarContext);
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(text); // Pass the text of the item to the onClick handler
+    }
+  };
 
   return (
     <li
@@ -68,8 +74,9 @@ export function SidebarItem({ icon, text, active, alert }) {
             : "hover:bg-indigo-50 text-gray-600"
         }
     `}
+      onClick={handleClick} // Attach the handleClick function to the onClick event
     >
-      <img src={icon} alt="" className={`${expanded ? "w-10" : "w-10"}`} />
+      <img src={icon} alt="" className="w-8 py-1" />
 
       <span
         className={`overflow-hidden transition-all ${
