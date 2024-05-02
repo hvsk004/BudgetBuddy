@@ -47,7 +47,7 @@ export function protectRoute(req, res, next) {
       console.log("User: " + JSON.stringify(user));
       if (user) {
         req.body.userId = user.userId;
-        console.log("User ID:", user.userId);
+        // console.log("User ID:", user.userId);
         return next();
       }
     } catch (err) {

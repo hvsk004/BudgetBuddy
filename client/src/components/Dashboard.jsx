@@ -288,16 +288,19 @@ export function Dashboard() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {expenses.map((expense) => (
-                        <TableRowCustom
-                          eId={expense.eId}
-                          key={expense.eId}
-                          description={expense.description}
-                          category={expense.category}
-                          amount={expense.amount}
-                          date={expense.date}
-                        />
-                      ))}
+                      {expenses
+                        .slice()
+                        .reverse()
+                        .map((expense) => (
+                          <TableRowCustom
+                            eId={expense.eId}
+                            key={expense.eId}
+                            description={expense.description}
+                            category={expense.category}
+                            amount={expense.amount}
+                            date={expense.date}
+                          />
+                        ))}
                     </TableBody>
                   </Table>
                 </CardContent>
@@ -331,6 +334,8 @@ export function Dashboard() {
                         .filter((expense) =>
                           expense.category.toLowerCase().includes("food")
                         )
+                        .slice()
+                        .reverse()
                         .map((expense) => (
                           <TableRowCustom
                             eId={expense.eId}
@@ -374,6 +379,8 @@ export function Dashboard() {
                         .filter((expense) =>
                           expense.category.toLowerCase().includes("travel")
                         )
+                        .slice()
+                        .reverse()
                         .map((expense) => (
                           <TableRowCustom
                             eId={expense.eId}
@@ -414,6 +421,8 @@ export function Dashboard() {
                     </TableHeader>
                     <TableBody>
                       {expenses
+                        .slice()
+                        .reverse()
                         .filter(
                           (expense) =>
                             !expense.category.toLowerCase().includes("food") &&
@@ -462,6 +471,8 @@ export function Dashboard() {
                         .filter((expense) =>
                           expense.category.toLowerCase().includes("clothing")
                         )
+                        .slice()
+                        .reverse()
                         .map((expense) => (
                           <TableRowCustom
                             eId={expense.eId}

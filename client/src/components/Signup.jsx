@@ -107,6 +107,7 @@ export default function Signup() {
                   id="password"
                   name="password"
                   type="password"
+                  required
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Your Password"
@@ -115,9 +116,9 @@ export default function Signup() {
               <Button type="submit" className="w-full">
                 Create an account
               </Button>
-              <Button variant="outline" className="w-full">
+              {/* <Button variant="outline" className="w-full">
                 Sign up with Google
-              </Button>
+              </Button> */}
             </div>
             <div className="mt-4 text-center text-sm">
               Already have an account?{" "}
