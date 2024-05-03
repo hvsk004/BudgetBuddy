@@ -3,7 +3,8 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors"; // Import the cors middleware
 import { connectDB } from "./config/db.js";
-
+import dotenv from "dotenv";
+dotenv.config();
 // Initialize Express app
 const app = express();
 
@@ -42,7 +43,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
-const PORT = 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 export default app;
