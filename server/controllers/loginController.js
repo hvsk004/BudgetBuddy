@@ -36,10 +36,11 @@ export const setJWTCookie = (req, res, next) => {
 
   res.clearCookie("jwt");
   res.cookie("jwt", token, {
-    httpOnly: false, // true - Cookie cannot be accessed via client-side scripts
-    secure: false, //true - Cookie will only be sent over HTTPS
-    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Expires in 1 week
-    sameSite: "lax", //strict - Cookie will only be sent on requests to the same site
+    httpOnly: true, // Recommended for security
+    secure: true, // Recommended for HTTPS connections
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    sameSite: "none", // Use "strict" with caution
   });
+
   res.status(200).json({ message: "Login Successful" });
 };
