@@ -1,10 +1,12 @@
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const createExpense = async (req, res, next) => {
   const expenseStatement = req.body.expense;
   axios
     .post(
-      "http://localhost:8001/v1/completions",
+      process.env.LLM_URI,
       {
         prompt: expenseStatement,
         system_prompt:
