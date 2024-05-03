@@ -11,8 +11,7 @@ export const login = async (req, res, next) => {
     }
 
     // Compare passwords securely
-    const isPasswordValid = await user.comparePassword(password);
-    if (!isPasswordValid) {
+    if (password != user.password) {
       return res.status(400).json({ message: "Invalid Password" });
     }
 
