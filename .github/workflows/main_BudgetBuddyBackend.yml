@@ -16,11 +16,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "14" # Specify the Node.js version you need
+          node-version: "20.x" # Specify the Node.js version you need
 
       - name: Install dependencies
         run: |
+          cd server
           npm install
+
+      # Optional: Add a build step if your project requires it
+      - name: Build project
+        run: |
+          cd server
+          npm run build
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
@@ -28,8 +35,3 @@ jobs:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: ./server
-
-      - name: Start app
-        run: |
-          cd server
-          nohup node app.js &  # This starts the app in the background
