@@ -20,7 +20,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd server
           npm install
 
       - name: Deploy to Azure Web App
@@ -28,4 +27,4 @@ jobs:
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ./server
+          package: ./
