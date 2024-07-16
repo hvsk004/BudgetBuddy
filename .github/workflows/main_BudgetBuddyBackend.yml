@@ -23,12 +23,6 @@ jobs:
           cd server
           npm install
 
-      # Optional: Add a build step if your project requires it
-      - name: Build project
-        run: |
-          cd server
-          npm run build
-
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
