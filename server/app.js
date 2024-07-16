@@ -30,6 +30,9 @@ import logoutRoute from "./routes/logout.js";
 import dashboardRoute from "./routes/dashboard.js";
 import expenseRoute from "./routes/expenses.js";
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 app.use("/logout", logoutRoute);
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
