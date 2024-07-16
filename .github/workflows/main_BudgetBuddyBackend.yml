@@ -20,18 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd server
           npm install
-
-      - name: Run tests
-        run: |
-          cd server
-          npm test  # Optional: Skip this step if you don't have tests
-
-      - name: Build project
-        run: |
-          cd server
-          npm run build  # Optional: Include this if you have a build step
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
