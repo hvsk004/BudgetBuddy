@@ -5,7 +5,7 @@
   "description": "A personal finance management system integrated with an LLM",
   "main": "server/app.js",
   "scripts": {
-    "start": "node server/app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
