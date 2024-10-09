@@ -1,2 +1,6 @@
 Hello World
+<<<<<<< HEAD
 From newBranch
+=======
+From main
+>>>>>>> 9718c65d57ca5e27f4b3ff65e7ae4a16bceebbcc
